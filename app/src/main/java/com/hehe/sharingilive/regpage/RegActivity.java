@@ -14,7 +14,7 @@ import com.hehe.sharingilive.model.BaseModel;
 public class RegActivity extends BaseActivity {
     @Override
     public Fragment createFragment() {
-        return null;
+        return RegFragment.newInstance();
     }
 
     RegContract.View view;
