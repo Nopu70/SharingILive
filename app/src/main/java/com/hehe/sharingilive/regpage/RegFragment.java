@@ -17,9 +17,10 @@ public class RegFragment extends Fragment implements RegContract.View {
         fragment.setArguments(args);
         return fragment;
     }
-    
+
+    RegContract.Presenter presenter;
     @Override
     public void setPresent(RegContract.Presenter presenter) {
-        
+        this.presenter = presenter;
     }
 }

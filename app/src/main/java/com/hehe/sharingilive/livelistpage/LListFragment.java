@@ -18,8 +18,9 @@ public class LListFragment extends Fragment implements LListContract.View {
         return fragment;
     }
 
+    LListContract.Presenter presenter;
     @Override
     public void setPresent(LListContract.Presenter presenter) {
-
+        this.presenter = presenter;
     }
 }

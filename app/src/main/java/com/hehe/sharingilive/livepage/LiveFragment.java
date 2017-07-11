@@ -18,8 +18,9 @@ public class LiveFragment extends Fragment implements LiveContract.View {
         return fragment;
     }
 
+    LiveContract.Presenter presenter;
     @Override
     public void setPresent(LiveContract.Presenter presenter) {
-
+        this.presenter = presenter;
     }
 }
