@@ -18,8 +18,9 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         return fragment;
     }
 
+    HomeContract.Presenter presenter;
     @Override
     public void setPresent(HomeContract.Presenter presenter) {
-
+        this.presenter = presenter;
     }
 }
