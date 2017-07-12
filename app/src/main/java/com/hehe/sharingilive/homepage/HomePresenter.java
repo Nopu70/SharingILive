@@ -1,6 +1,7 @@
 package com.hehe.sharingilive.homepage;
 
 import com.hehe.sharingilive.model.BaseModel;
+import com.hehe.sharingilive.model.LiveBiz;
 import com.hehe.sharingilive.model.RegisterBiz;
 import com.hehe.sharingilive.model.entity.User;
 
@@ -12,11 +13,15 @@ import com.hehe.sharingilive.model.entity.User;
 public class HomePresenter implements HomeContract.Presenter {
 
     HomeContract.View view;
-    RegisterBiz model;
+    LiveBiz liveBiz;
 
-    HomePresenter(HomeContract.View view, RegisterBiz registerBiz){
+    HomePresenter(HomeContract.View view, LiveBiz liveBiz){
         this.view = view;
-        this.model = registerBiz;
+        this.liveBiz = liveBiz;
     }
 
+    @Override
+    public void openLive() {
+        
+    }
 }

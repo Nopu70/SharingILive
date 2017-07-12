@@ -14,8 +14,10 @@ import com.hehe.sharingilive.model.entity.User;
 public class HomeContract {
 
     interface View extends BaseView<Presenter>{
+
     }
 
     interface Presenter extends BasePresenter{
+        void openLive();
     }
 }

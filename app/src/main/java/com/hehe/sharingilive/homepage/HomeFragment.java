@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.hehe.sharingilive.R;
+import com.hehe.sharingilive.livepage.LiveActivity;
 import com.hehe.sharingilive.loginpage.LoginActivity;
 
 /**
@@ -58,7 +59,11 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         btnOpenLive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //开启直播
+                //开启直播,将数据保存到
+                //0是开直播，1是看直播
+                getContext().startActivity(LiveActivity.getStartIntent(0,"666666"));
+
+                presenter.openLive();
             }
         });
     }
