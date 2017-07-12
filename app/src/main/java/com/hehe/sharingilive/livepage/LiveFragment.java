@@ -22,6 +22,7 @@ import android.widget.TextView;
 
 import com.hehe.sharingilive.R;
 import com.hehe.sharingilive.livepage.adapter.MsgRoomAdapter;
+import com.hyphenate.chat.EMClient;
 import com.ucloud.ulive.UEasyStreaming;
 import com.ucloud.ulive.UStreamingProfile;
 import com.ucloud.uvod.UMediaProfile;
@@ -114,18 +115,22 @@ public class LiveFragment extends Fragment implements LiveContract.View {
         msg_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String str = msg_input.getText().toString();
                 InputMethodManager imm = (InputMethodManager) getActivity()
                         .getSystemService(getActivity().INPUT_METHOD_SERVICE);
+                msg_input.setText("");
+                msg_input.clearFocus();
+                if (str.isEmpty()){
+                    return;
+                }
                 imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
-                String str = msg_input.getText().toString();
                 StringBuilder ssb = new StringBuilder();
                 ssb.append("呵呵:");
                 ssb.append("%");
                 ssb.append(str);
                 adapter.setList(ssb.toString());
                 adapter.notifyDataSetChanged();
-                msg_input.setText("");
-                msg_input.clearFocus();
+
             }
         });
 
@@ -191,4 +196,21 @@ public class LiveFragment extends Fragment implements LiveContract.View {
         return view;
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        streaming.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        streaming.onResume();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        streaming.onDestroy();
+    }
 }
