@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context="com.hehe.sharingilive.livepage.LiveActivity">
 
     <com.ucloud.ulive.widget.UAspectFrameLayout
         android:layout_width="match_parent"
@@ -13,8 +14,16 @@
         android:layout_alignParentStart="true">
         <TextureView
             android:id="@+id/texture"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
+
+        <com.ucloud.uvod.widget.UVideoView
+            android:id="@+id/uVideo"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
     </com.ucloud.ulive.widget.UAspectFrameLayout>
 
     <RelativeLayout
@@ -118,13 +127,14 @@
         android:layout_width="match_parent"
         android:layout_height="50dp">
         <EditText
-            android:id="@+id/text_input"
+            android:id="@+id/msg_input"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:maxLines="1"
+            android:layout_weight="1"
             android:textColor="@android:color/white"
             android:background="@drawable/text_input_bg"
-            android:layout_width="200dp"
+            android:layout_width="match_parent"
             android:hint="说点什么吧..."
             android:layout_height="match_parent" />
         <ImageView
@@ -133,10 +143,21 @@
             android:clickable="true"
             android:layout_width="50dp"
             android:layout_height="50dp" />
-
+        <ImageView
+            android:visibility="visible"
+            android:id="@+id/play_pause"
+            android:clickable="true"
+            android:background="@drawable/play_bg"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+        <ImageView
+            android:visibility="visible"
+            android:id="@+id/sxt"
+            android:clickable="true"
+            android:background="@drawable/sxt_bg"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
     </LinearLayout>
-
-
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/msg_room"
@@ -145,8 +166,5 @@
         android:layout_height="200dp">
 
     </android.support.v7.widget.RecyclerView>
-
-
-
 
 </RelativeLayout>

@@ -1,5 +1,6 @@
 package com.hehe.sharingilive.livepage;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.SurfaceTexture;
 import android.os.Build;
@@ -8,18 +9,23 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hehe.sharingilive.R;
+import com.hehe.sharingilive.livepage.adapter.MsgRoomAdapter;
 import com.ucloud.ulive.UEasyStreaming;
 import com.ucloud.ulive.UStreamingProfile;
+import com.ucloud.uvod.UMediaProfile;
+import com.ucloud.uvod.widget.UVideoView;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -44,14 +50,27 @@ public class LiveFragment extends Fragment implements LiveContract.View {
         this.presenter = presenter;
     }
 
-    TextureView textureView;
     CircleImageView live_h;
     TextView live_w;
     RecyclerView msg_room;
     EditText text_input;
-    ImageView msg_btn;
-    String mRtmpAddress;
+    TextureView textureView;
     UEasyStreaming streaming;
+    String mRtmpAddress;
+    ImageView msg_btn, play_pause, sxt;
+    RecyclerView recyclerView;
+    UVideoView uVideoView;
+    EditText msg_input;
+    MsgRoomAdapter adapter;
+
+    int type;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Intent intent = getActivity().getIntent();
+        type = intent.getIntExtra("type", 0);
+    }
 
     @Nullable
     @Override
@@ -73,40 +92,102 @@ public class LiveFragment extends Fragment implements LiveContract.View {
         }
 
         textureView = view.findViewById(R.id.texture);
+        uVideoView = view.findViewById(R.id.uVideo);
         live_h = view.findViewById(R.id.live_h);
         live_w = view.findViewById(R.id.live_w);
         msg_room = view.findViewById(R.id.msg_room);
-        text_input = view.findViewById(R.id.text_input);
+        text_input = view.findViewById(R.id.msg_input);
         msg_btn = view.findViewById(R.id.msg_btn);
+        play_pause = view.findViewById(R.id.play_pause);
+        sxt = view.findViewById(R.id.sxt);
+        recyclerView = view.findViewById(R.id.msg_room);
+
+        adapter = new MsgRoomAdapter(getContext());
+        LinearLayoutManager manager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(manager);
+        recyclerView.setAdapter(adapter);
 
         textureView.setKeepScreenOn(true);
         mRtmpAddress = "rtmp://publish3.cdn.ucloud.com.cn/ucloud/demo";
 
-        streaming = UEasyStreaming.Factory.newInstance();
-        UStreamingProfile mStreamingProfile = new UStreamingProfile.Builder().build(mRtmpAddress);
-        streaming.prepare(mStreamingProfile);
-        textureView.setSurfaceTextureListener(new TextureView.SurfaceTextureListener() {
+        msg_btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i, int i1) {
-                streaming.startPreview(surfaceTexture, i, i1);
-            }
-
-            @Override
-            public void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i, int i1) {
-
-            }
-
-            @Override
-            public boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-                return false;
-            }
-
-            @Override
-            public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-
+            public void onClick(View view) {
+                InputMethodManager imm = (InputMethodManager) getActivity()
+                        .getSystemService(getActivity().INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+                String str = msg_input.getText().toString();
+                StringBuilder ssb = new StringBuilder();
+                ssb.append("呵呵:");
+                ssb.append("%");
+                ssb.append(str);
+                adapter.setList(ssb.toString());
+                adapter.notifyDataSetChanged();
+                msg_input.setText("");
+                msg_input.clearFocus();
             }
         });
 
+        if (type==0){
+            textureView.setVisibility(View.VISIBLE);
+            play_pause.setVisibility(View.VISIBLE);
+            sxt.setVisibility(View.VISIBLE);
+            textureView.setKeepScreenOn(true);
+            streaming = UEasyStreaming.Factory.newInstance();
+            UStreamingProfile mStreamingProfile = new UStreamingProfile.Builder().build(mRtmpAddress);
+            streaming.prepare(mStreamingProfile);
+            textureView.setSurfaceTextureListener(new TextureView.SurfaceTextureListener() {
+                @Override
+                public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i, int i1) {
+                    streaming.startPreview(surfaceTexture, i, i1);
+                }
+
+                @Override
+                public void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i, int i1) {
+
+                }
+
+                @Override
+                public boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
+                    return false;
+                }
+
+                @Override
+                public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+
+                }
+            });
+            play_pause.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (streaming.isRecording()){
+                        play_pause.setBackgroundResource(R.drawable.play_bg);
+                        streaming.stopRecording();
+                    }else {
+                        play_pause.setBackgroundResource(R.drawable.pause_bg);
+                        streaming.startRecording();
+                    }
+                }
+            });
+            sxt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    streaming.switchCamera();
+                }
+            });
+        }else {
+            uVideoView.setVisibility(View.VISIBLE);
+            UMediaProfile profile = new UMediaProfile();// 是否自动播放：0 - 需调用start开始播放；1 - 自动播放
+            profile.setInteger(UMediaProfile.KEY_START_ON_PREPARED, 1);// 播放类型：0 - 点播；1 - 直播
+            profile.setInteger(UMediaProfile.KEY_LIVE_STREAMING, 1);// 解码类型：0 - 软解；1 - 硬解
+            profile.setInteger(UMediaProfile.KEY_MEDIACODEC, 0);// 是否允许后台播放：0 - 不允许；1 - 允许
+            profile.setInteger(UMediaProfile.KEY_ENABLE_BACKGROUND_PLAY, 0);
+            uVideoView.setMediaPorfile(profile);// 设置视频比例，默认VIDEO_RATIO_FIT_PARENT
+            uVideoView.applyAspectRatio(UVideoView.VIDEO_RATIO_FIT_PARENT);
+            uVideoView.setVideoPath(mRtmpAddress);
+            //uVideoView.start();
+        }
         return view;
     }
+
 }
