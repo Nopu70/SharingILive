@@ -2,19 +2,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hehe.sharingilive">
     <!-- bmob -->
-    <!-- ÔÊÐíÁªÍø -->
+    <!-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <!-- »ñÈ¡GSM£¨2g£©¡¢WCDMA£¨ÁªÍ¨3g£©µÈÍøÂç×´Ì¬µÄÐÅÏ¢ -->
+    <!-- ï¿½ï¿½È¡GSMï¿½ï¿½2gï¿½ï¿½ï¿½ï¿½WCDMAï¿½ï¿½ï¿½ï¿½Í¨3gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½ï¿½ï¿½Ï¢ -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!-- »ñÈ¡wifiÍøÂç×´Ì¬µÄÐÅÏ¢ -->
+    <!-- ï¿½ï¿½È¡wifiï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½ï¿½ï¿½Ï¢ -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <!-- ±£³ÖCPU ÔË×ª£¬ÆÁÄ»ºÍ¼üÅÌµÆÓÐ¿ÉÄÜÊÇ¹Ø±ÕµÄ,ÓÃÓÚÎÄ¼þÉÏ´«ºÍÏÂÔØ -->
+    <!-- ï¿½ï¿½ï¿½ï¿½CPU ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½Ä»ï¿½Í¼ï¿½ï¿½Ìµï¿½ï¿½Ð¿ï¿½ï¿½ï¿½ï¿½Ç¹Ø±Õµï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½Ï´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <!-- »ñÈ¡sd¿¨Ð´µÄÈ¨ÏÞ£¬ÓÃÓÚÎÄ¼þÉÏ´«ºÍÏÂÔØ -->
+    <!-- ï¿½ï¿½È¡sdï¿½ï¿½Ð´ï¿½ï¿½È¨ï¿½Þ£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½Ï´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <!-- ÔÊÐí¶ÁÈ¡ÊÖ»ú×´Ì¬ ÓÃÓÚ´´½¨BmobInstallation -->
+    <!-- ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½Ö»ï¿½×´Ì¬ ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½BmobInstallation -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <!-- »·ÐÅ -->
+    <!-- ï¿½ï¿½ï¿½ï¿½ -->
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
@@ -52,7 +52,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".livepage.LiveActivity">
+        <activity android:name=".livepage.LiveActivity"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -66,7 +67,7 @@
         <meta-data
             android:name="EASEMOB_APPKEY"
             android:value="	1130170527178296#sharingirun" />
-        <!-- ÉùÃ÷SDKËùÐèµÄservice SDKºËÐÄ¹¦ÄÜ -->
+        <!-- ï¿½ï¿½ï¿½ï¿½SDKï¿½ï¿½ï¿½ï¿½ï¿½service SDKï¿½ï¿½ï¿½Ä¹ï¿½ï¿½ï¿½ -->
         <service
             android:name="com.hyphenate.chat.EMChatService"
             android:exported="true" />
@@ -74,14 +75,14 @@
             android:name="com.hyphenate.chat.EMJobService"
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE" />
-        <!-- ÉùÃ÷SDKËùÐèµÄreceiver -->
+        <!-- ï¿½ï¿½ï¿½ï¿½SDKï¿½ï¿½ï¿½ï¿½ï¿½receiver -->
         <receiver android:name="com.hyphenate.chat.EMMonitorReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_REMOVED" />
 
                 <data android:scheme="package" />
             </intent-filter>
-            <!-- ¿ÉÑ¡filter -->
+            <!-- ï¿½ï¿½Ñ¡filter -->
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.USER_PRESENT" />

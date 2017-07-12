@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hehe.sharingilive.R;
+import com.hehe.sharingilive.util.UserDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +56,8 @@ public class MsgRoomAdapter extends RecyclerView.Adapter<MsgRoomAdapter.ViewHold
         ClickableSpan cs = new ClickableSpan() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, split_str[0]+"被点击", Toast.LENGTH_SHORT).show();
+                UserDialog dialog = new UserDialog(UserDialog.TYPE.USER, context);
+                dialog.showDialog();
             }
         };
         ssb.setSpan(cs, 0, l-1, Spanned.SPAN_EXCLUSIVE_INCLUSIVE);

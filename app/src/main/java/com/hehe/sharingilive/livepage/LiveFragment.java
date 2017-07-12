@@ -53,7 +53,6 @@ public class LiveFragment extends Fragment implements LiveContract.View {
     CircleImageView live_h;
     TextView live_w;
     RecyclerView msg_room;
-    EditText text_input;
     TextureView textureView;
     UEasyStreaming streaming;
     String mRtmpAddress;
@@ -98,7 +97,7 @@ public class LiveFragment extends Fragment implements LiveContract.View {
         live_h = view.findViewById(R.id.live_h);
         live_w = view.findViewById(R.id.live_w);
         msg_room = view.findViewById(R.id.msg_room);
-        text_input = view.findViewById(R.id.msg_input);
+        msg_input = view.findViewById(R.id.msg_input);
         msg_btn = view.findViewById(R.id.msg_btn);
         play_pause = view.findViewById(R.id.play_pause);
         sxt = view.findViewById(R.id.sxt);
