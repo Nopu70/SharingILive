@@ -22,9 +22,10 @@ public class LiveActivity extends BaseActivity {
     LiveContract.Presenter presenter;
     LiveContract.View view;
 
-    public static Intent getStartIntent(int type){
+    public static Intent getStartIntent(int type, String roomID){
         Intent intent = new Intent(MyApplication.context, LiveActivity.class);
         intent.putExtra("type", type);
+        intent.putExtra("roomID", roomID);
         return intent;
     }
 

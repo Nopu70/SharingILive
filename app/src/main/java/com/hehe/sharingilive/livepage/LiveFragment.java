@@ -64,12 +64,14 @@ public class LiveFragment extends Fragment implements LiveContract.View {
     MsgRoomAdapter adapter;
 
     int type;
+    String roomID;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getActivity().getIntent();
         type = intent.getIntExtra("type", 0);
+        roomID = intent.getStringExtra("roomID");
     }
 
     @Nullable
@@ -108,7 +110,7 @@ public class LiveFragment extends Fragment implements LiveContract.View {
         recyclerView.setAdapter(adapter);
 
         textureView.setKeepScreenOn(true);
-        mRtmpAddress = "rtmp://publish3.cdn.ucloud.com.cn/ucloud/demo";
+        mRtmpAddress = "rtmp://publish3.cdn.ucloud.com.cn/ucloud/"+roomID;
 
         msg_btn.setOnClickListener(new View.OnClickListener() {
             @Override
