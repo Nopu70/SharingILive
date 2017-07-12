@@ -6,8 +6,10 @@ import android.support.v4.app.Fragment;
 
 import com.hehe.sharingilive.BaseActivity;
 import com.hehe.sharingilive.model.BaseModel;
+import com.hehe.sharingilive.model.RegisterBiz;
 
 /**
+ *
  * Created by tarena on 2017/7/11.
  */
 
@@ -25,7 +27,7 @@ public class LoginActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         view = (LoginContract.View)fragment;
-        presenter = new LoginPresenter(view, new BaseModel());
+        presenter = new LoginPresenter(view,new RegisterBiz());
         view.setPresent(presenter);
     }
 }

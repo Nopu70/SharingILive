@@ -6,8 +6,10 @@ import android.support.v4.app.Fragment;
 
 import com.hehe.sharingilive.BaseActivity;
 import com.hehe.sharingilive.model.BaseModel;
+import com.hehe.sharingilive.model.RegisterBiz;
 
 /**
+ *
  * Created by tarena on 2017/7/11.
  */
 
@@ -24,7 +26,7 @@ public class HomeActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         view = (HomeContract.View) fragment;
-        presenter = new HomePresenter(view, new BaseModel());
+        presenter = new HomePresenter(view, new RegisterBiz());
         view.setPresent(presenter);
     }
 }

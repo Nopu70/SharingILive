@@ -13,6 +13,13 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Bmob.initialize(this,"e8c8cf2d8f11e100ee821f5eb6ae6ced");
+        EMOptions options = new EMOptions();
+        EMClient.getInstance().init(this, options);
+
+
+
+
         context = getApplicationContext();
     }
 }
