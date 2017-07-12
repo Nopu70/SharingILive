@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@drawable/login"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        android:src="@drawable/back" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:textColor="#ffffff"
+        android:layout_marginTop="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="欢迎登陆SharingILive"
+        android:textSize="24sp" />
+
+    <EditText
+        android:layout_marginTop="36dp"
+        android:padding="12dp"
+        android:hint="手机号/邮箱"
+        android:background="#22ffffff"
+        android:id="@+id/et_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:layout_marginTop="2dp"
+        android:hint="密码"
+        android:padding="12dp"
+        android:background="#22ffffff"
+        android:id="@+id/et_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <Button
+        android:textColor="#ffffff"
+        android:background="#0877af"
+        android:textSize="18sp"
+        android:paddingStart="100dp"
+        android:paddingEnd="100dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:layout_marginTop="36dp"
+        android:id="@+id/btn_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="登录" />
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal"
+        android:text="忘记密码"
+        android:layout_width="wrap_content"
+        android:id="@+id/tv_forget_password"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal"
+        android:text="注册"
+        android:padding="6dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:id="@+id/tv_register"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal"
+        android:text="社交账户登录"
+        android:id="@+id/tv_third_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

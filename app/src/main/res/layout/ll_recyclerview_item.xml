@@ -1,25 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center">
+    android:layout_height="160dp"
+    android:padding="6dp">
+
     <ImageView
-        android:id="@+id/anchor_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/img_error_9"/>
-    <TextView
-        android:id="@+id/anchor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="主播名"
-        android:layout_below="@+id/anchor_img"
-        android:layout_alignStart="@+id/anchor_img" />
-<TextView
-    android:id="@+id/people"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="人数"
-    android:layout_below="@+id/anchor_img"
-    android:layout_alignEnd="@+id/anchor_img" />
-</RelativeLayout>
+        android:id="@+id/iv_live"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/livelist" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:background="#dd555555">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="6dp"
+            android:layout_toLeftOf="@+id/tv_room_watch_num"
+            android:src="@drawable/ic_visibility_black_24dp" />
+
+        <TextView
+            android:id="@+id/tv_live_room_id"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="6dp"
+            android:gravity="center_vertical"
+            android:text="房间号：666666"
+            android:textColor="#ffffff"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_room_watch_num"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="6dp"
+            android:gravity="center_vertical"
+            android:text="366"
+            android:textColor="#ffffff"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:layout_marginTop="136dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_live_user"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="6dp"
+            android:padding="1dp"
+            android:src="@drawable/ic_person_outline_black_24dp" />
+
+        <TextView
+            android:id="@+id/tv_live_username"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_marginStart="6dp"
+            android:gravity="center"
+            android:text="主播姓名"
+            android:textColor="#000000"
+            android:textSize="12sp" />
+        <TextView
+            android:id="@+id/tv_live_description"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="right|center_vertical"
+            android:paddingEnd="4dp"
+            android:text="房间描述"
+            android:textColor="#000000"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+
+
+</FrameLayout>
