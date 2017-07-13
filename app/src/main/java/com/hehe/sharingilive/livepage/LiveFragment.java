@@ -33,7 +33,6 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
- *
  * Created by tarena on 2017/7/11.
  */
 
@@ -51,6 +50,7 @@ public class LiveFragment extends Fragment implements LiveContract.View {
     }
 
     LiveContract.Presenter presenter;
+
     @Override
     public void setPresent(LiveContract.Presenter presenter) {
         this.presenter = presenter;
@@ -94,8 +94,8 @@ public class LiveFragment extends Fragment implements LiveContract.View {
             getActivity().getWindow().setNavigationBarColor(Color.TRANSPARENT);
             getActivity().getWindow().setStatusBarColor(Color.TRANSPARENT);
         }
-        ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
-        if (actionBar!=null){
+        ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        if (actionBar != null) {
             actionBar.hide();
         }
 
@@ -116,7 +116,7 @@ public class LiveFragment extends Fragment implements LiveContract.View {
         recyclerView.setAdapter(adapter);
 
         textureView.setKeepScreenOn(true);
-        mRtmpAddress = "rtmp://publish3.cdn.ucloud.com.cn/ucloud/"+roomID;
+        mRtmpAddress = "rtmp://publish3.cdn.ucloud.com.cn/ucloud/" + roomID;
 
         msg_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,7 +126,7 @@ public class LiveFragment extends Fragment implements LiveContract.View {
                         .getSystemService(getActivity().INPUT_METHOD_SERVICE);
                 msg_input.setText("");
                 msg_input.clearFocus();
-                if (str.isEmpty()){
+                if (str.isEmpty()) {
                     return;
                 }
                 imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
@@ -140,7 +140,7 @@ public class LiveFragment extends Fragment implements LiveContract.View {
             }
         });
 
-        if (type==0){
+        if (type == 0) {
             textureView.setVisibility(View.VISIBLE);
             play_pause.setVisibility(View.VISIBLE);
             sxt.setVisibility(View.VISIBLE);
@@ -173,12 +173,12 @@ public class LiveFragment extends Fragment implements LiveContract.View {
             play_pause.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (streaming.isRecording()){
+                    if (streaming.isRecording()) {
                         play_pause.setBackgroundResource(R.drawable.play_bg);
                         streaming.stopRecording();
                         //开始直播，更新网路状态
                         presenter.openLive(0);
-                    }else {
+                    } else {
                         play_pause.setBackgroundResource(R.drawable.pause_bg);
                         streaming.startRecording();
                         //关闭直播，更新网络状态
@@ -192,7 +192,7 @@ public class LiveFragment extends Fragment implements LiveContract.View {
                     streaming.switchCamera();
                 }
             });
-        }else {
+        } else {
             uVideoView.setVisibility(View.VISIBLE);
             UMediaProfile profile = new UMediaProfile();// 是否自动播放：0 - 需调用start开始播放；1 - 自动播放
             profile.setInteger(UMediaProfile.KEY_START_ON_PREPARED, 1);// 播放类型：0 - 点播；1 - 直播
@@ -211,6 +211,7 @@ public class LiveFragment extends Fragment implements LiveContract.View {
     @Override
     public void onSaveDataEnd(LiveList liveList, int openOrWatch) {
     }
+
     @Override
     public void onPause() {
         super.onPause();
@@ -226,6 +227,8 @@ public class LiveFragment extends Fragment implements LiveContract.View {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        //关闭直播，更新网络状态
+        presenter.closeLive(liveList);
         streaming.onDestroy();
     }
 }

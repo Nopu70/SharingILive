@@ -16,6 +16,7 @@ import com.hehe.sharingilive.R;
 import com.hehe.sharingilive.livepage.LiveActivity;
 import com.hehe.sharingilive.loginpage.LoginActivity;
 import com.hehe.sharingilive.model.entity.LiveList;
+import com.hyphenate.chat.EMClient;
 
 import java.util.List;
 
@@ -70,6 +71,8 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     }
 
     private void initView() {
+        EMClient.getInstance().groupManager().loadAllGroups();
+        EMClient.getInstance().chatManager().loadAllConversations();
         btn = view.findViewById(R.id.btn_register);
         btnOpenLive = view.findViewById(R.id.btn_open_live);
         RecyclerView rv = view.findViewById(R.id.LL_RecyclerView);

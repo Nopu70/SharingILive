@@ -6,6 +6,8 @@ import android.widget.Toast;
 import com.hehe.sharingilive.MyApplication;
 import com.hehe.sharingilive.model.entity.LiveList;
 import com.hehe.sharingilive.model.entity.User;
+import com.hyphenate.chat.EMClient;
+import com.hyphenate.exceptions.HyphenateException;
 
 import java.util.List;
 import java.util.Random;
@@ -42,6 +44,8 @@ public class LiveBiz {
                         setLiveInfo(user, saveListListener);
                     } else {
                         //查询最新用户信息失败
+                        //提示用户登录
+                        Toast.makeText(MyApplication.context, "请您登录账号开启直播", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -115,15 +119,18 @@ public class LiveBiz {
         liveliset.update(new UpdateListener() {
             @Override
             public void done(BmobException e) {
-                if (e == null&&isLive) {
+                if (e == null && isLive) {
                     //直播状态更新完毕，开始直播
                     saveListListener.onLiveListSaveEnd(liveliset);
+                    //创建群组（聊天室）
+
                 } else {
                     //直播状态更新失败
                 }
             }
         });
     }
+
     /**
      * 更新用户与直播列表的关联信息
      *
@@ -141,14 +148,6 @@ public class LiveBiz {
         });
     }
 
-    public interface SaveListListener {
-        void onLiveListSaveEnd(LiveList liveList);
-
-    }
-    public interface QueryLivingInfoListener{
-        void onLivingInfoQueryEnd(List<LiveList> liveLists);
-    }
-
     /**
      * 查询正在直播的列表信息
      */
@@ -158,10 +157,10 @@ public class LiveBiz {
         query.findObjects(new FindListener<LiveList>() {
             @Override
             public void done(List<LiveList> list, BmobException e) {
-                if (e==null){
+                if (e == null) {
                     //查询成功
                     queryLivingInfoListener.onLivingInfoQueryEnd(list);
-                }else {
+                } else {
                     //查询失败
                 }
             }
@@ -172,6 +171,15 @@ public class LiveBiz {
      * 关闭直播
      */
     public void closeLive(LiveList liveList) {
-        updateLiveState(liveList,false,null);
+        updateLiveState(liveList, false, null);
+    }
+
+    public interface SaveListListener {
+        void onLiveListSaveEnd(LiveList liveList);
+
+    }
+
+    public interface QueryLivingInfoListener {
+        void onLivingInfoQueryEnd(List<LiveList> liveLists);
     }
 }

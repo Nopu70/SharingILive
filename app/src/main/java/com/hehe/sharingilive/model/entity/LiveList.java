@@ -23,6 +23,9 @@ public class LiveList extends BmobObject{
      * 是否在直播的状态标识
      */
     private boolean isOpenLive;
+    /**
+     * 
+     */
 
     private String coverImgPath;
 
