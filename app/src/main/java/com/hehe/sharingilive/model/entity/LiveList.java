@@ -1,8 +1,6 @@
 package com.hehe.sharingilive.model.entity;
 
 import cn.bmob.v3.BmobObject;
-import cn.bmob.v3.datatype.BmobFile;
-
 /**
  * 直播列表
  * Created by tarena on 2017/7/11.
@@ -26,21 +24,7 @@ public class LiveList extends BmobObject{
      */
     private boolean isOpenLive;
 
-    public boolean isOpenLive() {
-        return isOpenLive;
-    }
-
-    public void setOpenLive(boolean openLive) {
-        isOpenLive = openLive;
-    }
-
-    public String getRoomDescription() {
-        return roomDescription;
-    }
-
-    public void setRoomDescription(String roomDescription) {
-        this.roomDescription = roomDescription;
-    }
+    private String coverImgPath;
 
     public User getUser() {
         return user;
@@ -56,5 +40,29 @@ public class LiveList extends BmobObject{
 
     public void setRoomId(String roomId) {
         this.roomId = roomId;
+    }
+
+    public String getRoomDescription() {
+        return roomDescription;
+    }
+
+    public void setRoomDescription(String roomDescription) {
+        this.roomDescription = roomDescription;
+    }
+
+    public boolean isOpenLive() {
+        return isOpenLive;
+    }
+
+    public void setOpenLive(boolean openLive) {
+        isOpenLive = openLive;
+    }
+
+    public String getCoverImgPath() {
+        return coverImgPath;
+    }
+
+    public void setCoverImgPath(String coverImgPath) {
+        this.coverImgPath = coverImgPath;
     }
 }

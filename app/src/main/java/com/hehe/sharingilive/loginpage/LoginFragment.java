@@ -66,11 +66,11 @@ public class LoginFragment extends Fragment implements LoginContract.View {
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
                 if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(password)) {
-                    if (isLogin) {
-                        presenter.login(username, password);
-                    } else {
-                        presenter.register(username, password);
-                    }
+                        if (isLogin) {
+                            presenter.login(username, password);
+                        } else {
+                            presenter.register(username, password);
+                        }
                 } else {
                     Toast.makeText(getContext(), "请输入正确的账号密码", Toast.LENGTH_SHORT).show();
                 }

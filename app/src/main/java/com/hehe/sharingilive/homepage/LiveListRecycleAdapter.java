@@ -8,9 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.hehe.sharingilive.R;
+import com.hehe.sharingilive.livepage.LiveActivity;
 import com.hehe.sharingilive.model.entity.DemoLiveList;
 import com.hehe.sharingilive.model.entity.LiveList;
 
@@ -41,13 +43,26 @@ public class LiveListRecycleAdapter extends RecyclerView.Adapter<LiveListRecycle
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        LiveList liveList = mList.get(position);
+        final LiveList liveList = mList.get(position);
         holder.tvRoomUsername.setText(liveList.getUser().getUsername());
         holder.tvRoomId.setText(liveList.getRoomId());
         if (!TextUtils.isEmpty(liveList.getRoomDescription())) {
             holder.tvRoomDescription.setText(liveList.getRoomDescription());
         }
-        Glide.with(mContext).load(liveList.getUser().getHeaderImg()).into(holder.ivRoomImg);
+        Glide.with(mContext).load(liveList.getCoverImgPath()).into(holder.ivRoomImg);
+
+        //添加监听
+        holder.ivRoomImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (liveList.isOpenLive()){
+                //0 开直播，1 看直播
+                mContext.startActivity(LiveActivity.getStartIntent(1,liveList));
+                }else{
+                    Toast.makeText(mContext,"主播不在家",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     @Override

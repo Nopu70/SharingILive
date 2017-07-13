@@ -30,6 +30,7 @@ public class DemoLiveList {
             User user = new User();
             user.setUsername(names[i]);
             user.setHeaderImg(images[i]);
+            liveList.setCoverImgPath(images[i]);
             liveList.setOpenLive(false);
             liveList.setUser(user);
             liveList.setRoomDescription("大家都来直播"+i+i);

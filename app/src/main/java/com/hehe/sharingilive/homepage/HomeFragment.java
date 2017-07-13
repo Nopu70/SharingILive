@@ -15,6 +15,9 @@ import android.widget.Button;
 import com.hehe.sharingilive.R;
 import com.hehe.sharingilive.livepage.LiveActivity;
 import com.hehe.sharingilive.loginpage.LoginActivity;
+import com.hehe.sharingilive.model.entity.LiveList;
+
+import java.util.List;
 
 /**
  * Created by tarena on 2017/7/11.
@@ -25,6 +28,7 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     private Button btn;
     private View view;
     private Button btnOpenLive;
+    private LiveListRecycleAdapter adapter;
 
     public static HomeFragment newInstance() {
         Bundle args = new Bundle();
@@ -59,11 +63,8 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         btnOpenLive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //开启直播,将数据保存到
                 //0是开直播，1是看直播
-                getContext().startActivity(LiveActivity.getStartIntent(0,"666666"));
-
-                presenter.openLive();
+                presenter.openLive(0);
             }
         });
     }
@@ -73,8 +74,25 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         btnOpenLive = view.findViewById(R.id.btn_open_live);
         RecyclerView rv = view.findViewById(R.id.LL_RecyclerView);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
-        LiveListRecycleAdapter adapter = new LiveListRecycleAdapter(getContext());
+        adapter = new LiveListRecycleAdapter(getContext());
         rv.setLayoutManager(gridLayoutManager);
         rv.setAdapter(adapter);
+        //获取正在直播的信息
+        upLivedata();
+    }
+
+    private void upLivedata() {
+        presenter.updateLiveInfo();
+    }
+    @Override
+    public void onUpateDataEnd(List<LiveList> liveLists) {
+        adapter.addData(liveLists);
+    }
+
+    @Override
+    public void onSaveDataEnd(LiveList liveList,int openOrWatch) {
+        //开启直播,将数据保存到
+        //0是开直播，1是看直播
+        getContext().startActivity(LiveActivity.getStartIntent(openOrWatch,liveList));
     }
 }

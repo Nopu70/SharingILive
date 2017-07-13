@@ -8,6 +8,8 @@ import android.support.v4.app.Fragment;
 import com.hehe.sharingilive.BaseActivity;
 import com.hehe.sharingilive.MyApplication;
 import com.hehe.sharingilive.model.BaseModel;
+import com.hehe.sharingilive.model.LiveBiz;
+import com.hehe.sharingilive.model.entity.LiveList;
 
 /**
  * Created by tarena on 2017/7/11.
@@ -22,10 +24,10 @@ public class LiveActivity extends BaseActivity {
     LiveContract.Presenter presenter;
     LiveContract.View view;
 
-    public static Intent getStartIntent(int type, String roomID){
+    public static Intent getStartIntent(int type, LiveList liveList){
         Intent intent = new Intent(MyApplication.context, LiveActivity.class);
         intent.putExtra("type", type);
-        intent.putExtra("roomID", roomID);
+        intent.putExtra("liveList",liveList);
         return intent;
     }
 
@@ -34,7 +36,7 @@ public class LiveActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         view = (LiveContract.View)fragment;
-        presenter = new LivePresenter(view, new BaseModel());
+        presenter = new LivePresenter(view, new LiveBiz());
         view.setPresent(presenter);
     }
 }

@@ -22,23 +22,29 @@ import android.widget.TextView;
 
 import com.hehe.sharingilive.R;
 import com.hehe.sharingilive.livepage.adapter.MsgRoomAdapter;
+import com.hehe.sharingilive.model.entity.LiveList;
 import com.ucloud.ulive.UEasyStreaming;
 import com.ucloud.ulive.UStreamingProfile;
 import com.ucloud.uvod.UMediaProfile;
 import com.ucloud.uvod.widget.UVideoView;
 
+import java.util.List;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
+ *
  * Created by tarena on 2017/7/11.
  */
 
 public class LiveFragment extends Fragment implements LiveContract.View {
+    /**
+     * 主播的信息
+     */
+    private LiveList liveList;
 
     public static LiveFragment newInstance() {
-
         Bundle args = new Bundle();
-
         LiveFragment fragment = new LiveFragment();
         fragment.setArguments(args);
         return fragment;
@@ -71,7 +77,8 @@ public class LiveFragment extends Fragment implements LiveContract.View {
         super.onCreate(savedInstanceState);
         Intent intent = getActivity().getIntent();
         type = intent.getIntExtra("type", 0);
-        roomID = intent.getStringExtra("roomID");
+        liveList = (LiveList) intent.getSerializableExtra("liveList");
+        roomID = intent.getStringExtra(liveList.getRoomId());
     }
 
     @Nullable
@@ -159,15 +166,20 @@ public class LiveFragment extends Fragment implements LiveContract.View {
 
                 }
             });
+            //暂停
             play_pause.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if (streaming.isRecording()){
                         play_pause.setBackgroundResource(R.drawable.play_bg);
                         streaming.stopRecording();
+                        //开始直播，更新网路状态
+                        presenter.openLive(0);
                     }else {
                         play_pause.setBackgroundResource(R.drawable.pause_bg);
                         streaming.startRecording();
+                        //关闭直播，更新网络状态
+                        presenter.closeLive(liveList);
                     }
                 }
             });
@@ -187,9 +199,14 @@ public class LiveFragment extends Fragment implements LiveContract.View {
             uVideoView.setMediaPorfile(profile);// 设置视频比例，默认VIDEO_RATIO_FIT_PARENT
             uVideoView.applyAspectRatio(UVideoView.VIDEO_RATIO_FIT_PARENT);
             uVideoView.setVideoPath(mRtmpAddress);
-            //uVideoView.start();
+            //是否开始看直播
+            uVideoView.start();
         }
         return view;
     }
 
+    @Override
+    public void onSaveDataEnd(LiveList liveList, int openOrWatch) {
+
+    }
 }

@@ -44,7 +44,9 @@ public class HomeActivity extends BaseActivity {
         if (ContextCompat.checkSelfPermission(MyApplication.context,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 200);
+                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.CAMERA,Manifest.permission.RECORD_AUDIO,
+                        Manifest.permission.READ_PHONE_STATE}, 200);
             }
         }
     }
