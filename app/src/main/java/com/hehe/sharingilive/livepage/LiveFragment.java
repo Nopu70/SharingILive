@@ -22,15 +22,7 @@ import android.widget.TextView;
 
 import com.hehe.sharingilive.R;
 import com.hehe.sharingilive.livepage.adapter.MsgRoomAdapter;
-<<<<<<< HEAD
-<<<<<<< HEAD
 import com.hehe.sharingilive.model.entity.LiveList;
-=======
-import com.hyphenate.chat.EMClient;
->>>>>>> 6564d017bcc544e4df4ffd9d810583be366c5818
-=======
-import com.hyphenate.chat.EMClient;
->>>>>>> 6564d017bcc544e4df4ffd9d810583be366c5818
 import com.ucloud.ulive.UEasyStreaming;
 import com.ucloud.ulive.UStreamingProfile;
 import com.ucloud.uvod.UMediaProfile;
@@ -217,13 +209,9 @@ public class LiveFragment extends Fragment implements LiveContract.View {
     }
 
     @Override
-<<<<<<< HEAD
-<<<<<<< HEAD
     public void onSaveDataEnd(LiveList liveList, int openOrWatch) {
-
-=======
-=======
->>>>>>> 6564d017bcc544e4df4ffd9d810583be366c5818
+    }
+    @Override
     public void onPause() {
         super.onPause();
         streaming.onPause();
@@ -239,9 +227,5 @@ public class LiveFragment extends Fragment implements LiveContract.View {
     public void onDestroy() {
         super.onDestroy();
         streaming.onDestroy();
-<<<<<<< HEAD
->>>>>>> 6564d017bcc544e4df4ffd9d810583be366c5818
-=======
->>>>>>> 6564d017bcc544e4df4ffd9d810583be366c5818
     }
 }

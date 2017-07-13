@@ -2,19 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hehe.sharingilive">
     <!-- bmob -->
-    <!-- �������� -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <!-- ��ȡGSM��2g����WCDMA����ͨ3g��������״̬����Ϣ -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!-- ��ȡwifi����״̬����Ϣ -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <!-- ����CPU ��ת����Ļ�ͼ��̵��п����ǹرյ�,�����ļ��ϴ������� -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <!-- ��ȡsd��д��Ȩ�ޣ������ļ��ϴ������� -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <!-- �����ȡ�ֻ�״̬ ���ڴ���BmobInstallation -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <!-- ���� -->
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
@@ -66,13 +59,7 @@
 
         <meta-data
             android:name="EASEMOB_APPKEY"
-<<<<<<< HEAD
             android:value="1130170527178296#sharingirun" />
-        <!-- ����SDK�����service SDK���Ĺ��� -->
-=======
-            android:value="	1130170527178296#sharingirun" />
-        <!-- ����SDK�����service SDK���Ĺ��� -->
->>>>>>> 6564d017bcc544e4df4ffd9d810583be366c5818
         <service
             android:name="com.hyphenate.chat.EMChatService"
             android:exported="true" />
@@ -80,14 +67,12 @@
             android:name="com.hyphenate.chat.EMJobService"
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE" />
-        <!-- ����SDK�����receiver -->
         <receiver android:name="com.hyphenate.chat.EMMonitorReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_REMOVED" />
 
                 <data android:scheme="package" />
             </intent-filter>
-            <!-- ��ѡfilter -->
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.USER_PRESENT" />
