@@ -22,7 +22,11 @@ import android.widget.TextView;
 
 import com.hehe.sharingilive.R;
 import com.hehe.sharingilive.livepage.adapter.MsgRoomAdapter;
+<<<<<<< HEAD
 import com.hehe.sharingilive.model.entity.LiveList;
+=======
+import com.hyphenate.chat.EMClient;
+>>>>>>> 6564d017bcc544e4df4ffd9d810583be366c5818
 import com.ucloud.ulive.UEasyStreaming;
 import com.ucloud.ulive.UStreamingProfile;
 import com.ucloud.uvod.UMediaProfile;
@@ -59,7 +63,6 @@ public class LiveFragment extends Fragment implements LiveContract.View {
     CircleImageView live_h;
     TextView live_w;
     RecyclerView msg_room;
-    EditText text_input;
     TextureView textureView;
     UEasyStreaming streaming;
     String mRtmpAddress;
@@ -105,7 +108,7 @@ public class LiveFragment extends Fragment implements LiveContract.View {
         live_h = view.findViewById(R.id.live_h);
         live_w = view.findViewById(R.id.live_w);
         msg_room = view.findViewById(R.id.msg_room);
-        text_input = view.findViewById(R.id.msg_input);
+        msg_input = view.findViewById(R.id.msg_input);
         msg_btn = view.findViewById(R.id.msg_btn);
         play_pause = view.findViewById(R.id.play_pause);
         sxt = view.findViewById(R.id.sxt);
@@ -122,18 +125,22 @@ public class LiveFragment extends Fragment implements LiveContract.View {
         msg_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String str = msg_input.getText().toString();
                 InputMethodManager imm = (InputMethodManager) getActivity()
                         .getSystemService(getActivity().INPUT_METHOD_SERVICE);
+                msg_input.setText("");
+                msg_input.clearFocus();
+                if (str.isEmpty()){
+                    return;
+                }
                 imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
-                String str = msg_input.getText().toString();
                 StringBuilder ssb = new StringBuilder();
                 ssb.append("呵呵:");
                 ssb.append("%");
                 ssb.append(str);
                 adapter.setList(ssb.toString());
                 adapter.notifyDataSetChanged();
-                msg_input.setText("");
-                msg_input.clearFocus();
+
             }
         });
 
@@ -206,7 +213,25 @@ public class LiveFragment extends Fragment implements LiveContract.View {
     }
 
     @Override
+<<<<<<< HEAD
     public void onSaveDataEnd(LiveList liveList, int openOrWatch) {
 
+=======
+    public void onPause() {
+        super.onPause();
+        streaming.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        streaming.onResume();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        streaming.onDestroy();
+>>>>>>> 6564d017bcc544e4df4ffd9d810583be366c5818
     }
 }

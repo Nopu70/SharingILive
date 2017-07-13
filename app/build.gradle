@@ -6,7 +6,7 @@ android {
     defaultConfig {
         applicationId "com.hehe.sharingilive"
         minSdkVersion 19
-        targetSdkVersion 26
+        targetSdkVersion 21
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -47,7 +47,7 @@ dependencies {
     //bmob
     compile 'cn.bmob.android:bmob-sdk:3.5.5'
     //环信
-    compile 'com.hyphenate:hyphenate-sdk-lite:3.3.0'
+    compile 'com.hyphenate:hyphenate-sdk:3.3.0'
     //glide
     compile 'com.github.bumptech.glide:glide:4.0.0-RC0'
 }
